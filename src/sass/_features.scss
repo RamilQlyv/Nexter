@@ -1,0 +1,49 @@
+.features {
+  grid-column: center-start / center-end;
+  margin: 15rem 0;
+
+  @supports (display: grid) {
+    display: grid;
+    // grid-template-columns: repeat(
+    //   3,
+    //   1fr
+    // ); //burda rowlari vermemekle implicit grid sistemi yaratdiq
+
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(25rem, 1fr)
+    ); //bununla colum balacalasdiqdan 25remi kecdikden sonra yeni bir row yaradilmasini yaziriqki responsive gorunsun//ve burda columnlarin sayi onlara verdiyin olcuye uygun olaraq row icinde duzulur
+
+    grid-gap: 6rem;
+    align-items: start; //bununla yazisi qisa olan elementin hucre icerisinde stretch olaraq default olmasinin qarsisini aldiqki heading ile paragraf arasinda cox bowluq yaranmasin
+  }
+}
+
+.feature {
+  float: left;
+  width: 33.3333333%;
+  margin-bottom: 6rem; //bu kodlar yuxaridaki supportsdaki grid sisteminin browserun onu qebul etmediyi (kohne versiya oldugu ucun) halda bas verir
+
+  @supports (display: grid) {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  //yene rowsun contente gore size olunmasini istediyimiz ucun hecne yazmadiq ora
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 1.5rem;
+
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+    grid-row: 1 / span 2; //-1 yazsaydiq o ancaq explicit grid ucun kecerlidi islemeyecekdi.ona gore span 2 yazdiq
+    transform: translateY(-1rem);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}
